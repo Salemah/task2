@@ -202,7 +202,7 @@ function fill_unit_select_box($connect)
                         var html_code = "<tr id='row" + count + "'>";
                         html_code += data;
                         html_code += `<td>
-                        <select name="attendance" class="attendance form-select">
+                        <select name="attendance[]" class="attendance form-select">
                         <option value="" >Select</option>
                            <option value="Present" >Present</option>
                             <option value="Absent">Absent</option>
@@ -229,14 +229,7 @@ function fill_unit_select_box($connect)
                
                event.preventDefault();
                var error = '';
-            //    $('.item_name').each(function() {
-            //        var count = 1;
-            //        if ($(this).val() == '') {
-            //            error += "<p>Enter Item Name at " + count + " Row</p>";
-            //            return false;
-            //        }
-            //        count = count + 1;
-            //    });
+            
                $('.name').each(function() {
                    var count = 1;
                    if ($(this).val() == '') {
@@ -279,47 +272,8 @@ function fill_unit_select_box($connect)
                    $('#error').html('<div class="alert alert-danger">' + error + '</div>');
                }
            });
-           
 
-
-            // $('#save').click(function() {
-            //     var name = [];
-            //     var attendance = [];
-
-            //     $('.name').each(function() {
-            //         name.push($(this).text());
-
-            //     });
-            //     $('.attendance').each(function() {
-            //         attendance.push($(this).text());
-            //     });
-
-
-            //     alert(name.length);
-
-            //     // $.ajax({
-
-            //     //     url: "AttendanceInsert.php",
-            //     //     method: "POST",
-            //     //     data: {
-            //     //         name: name,
-            //     //         attendance: attendance,
-
-            //     //     },
-
-            //     //     success: function(data) {
-            //     //         alert(data);
-            //     //         $("td[contentEditable='true']").text("");
-            //     //         for (var i = 2; i <= count; i++) {
-            //     //             $('tr#' + i + '').remove();
-            //     //         }
-            //     //         fetch_item_data();
-            //     //     }
-            //     // });
-            // });
-
-
-        });
+           });
     </script>
 
 </body>
