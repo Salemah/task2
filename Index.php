@@ -196,6 +196,7 @@ function fill_unit_select_box($connect)
                     },
                     success: function(data) {
                         count = count + 1;
+                        var html_code ="<div>  ";
                         var html_code = "<tr id='row" + count + "'>";
                         html_code += data;
                         html_code += `<td>
@@ -206,9 +207,10 @@ function fill_unit_select_box($connect)
 
                          </select>
                          </td>`;
-                        html_code += "<td><a type='button' name='remove' data-row='row" + count + "' class='remove form-control btn btn-success btn-icon active '  ><i class='fa fa-minus'></i></a></td>";
+                        html_code += "<td><div class='d-inline-flex '> <a type='button' name='remove' data-row='row" + count + "' class='remove form-control btn btn-success btn-icon active me-3 '  ><i class='fa fa-minus'></i></a><br> <a type='button' name='admid' data-row='row" + count + "'class='admid form-control btn btn-success btn-icon active'  style='color: white; '><i class='fa fa-plus'></i></a></div>  </td>";
                         html_code += "</tr>";
-                        $('#mytablle').append(html_code);
+                        html_code += "</div>";
+                        $('#tbody2').append(html_code);
 
                     }
                 });
@@ -217,9 +219,45 @@ function fill_unit_select_box($connect)
             $(document).on('click', '.remove', function() {
 
                 var delete_row = $(this).data("row");
-                alert(delete_row);
+                // alert(delete_row);
                 $('#' + delete_row).remove();
             });
+
+               $(document).on('click', '.admid', function() {
+                var delete_row = $(this).data("row");
+                alert(delete_row);
+                var x = 0;
+                var read = "";
+                $.ajax({
+                    url: "addmore.php",
+                    method: "POST",
+                    data: {
+                        read: read
+                    },
+                    success: function(data) {
+                        count = count + 1;
+                        var html_code = "<tr id='row" + count + "'>";
+                        html_code += data;
+                        html_code += `<td>
+                        <select name="attendance[]" class="attendance form-select">
+                        <option value="" >Select</option>
+                           <option value="Present" >Present</option>
+                            <option value="Absent">Absent</option>
+
+                         </select>
+                         </td>`;
+                        html_code += "<td><div class='d-inline-flex '> <a type='button' name='remove' data-row='row" + count + "' class='remove form-control btn btn-success btn-icon active me-3 '  ><i class='fa fa-minus'></i></a><br> <a data-row='row" + count + "'class='remove form-control btn btn-success btn-icon active'  style='color: white; '><i class='fa fa-plus'></i></a></div>  </td>";
+                        html_code += "</tr>";
+                        $('#mytablle').append(html_code);
+
+                    }
+                });
+            });
+
+
+
+
+            // 
 
            
             $('#insert_form').on('submit', function(event) {
