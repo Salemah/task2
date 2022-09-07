@@ -196,7 +196,7 @@ function fill_unit_select_box($connect)
                     },
                     success: function(data) {
                         count = count + 1;
-                        var html_code ="<div>  ";
+                        // var html_code ="<div id='row" + count + ">  ";
                         var html_code = "<tr id='row" + count + "'>";
                         html_code += data;
                         html_code += `<td>
@@ -209,7 +209,7 @@ function fill_unit_select_box($connect)
                          </td>`;
                         html_code += "<td><div class='d-inline-flex '> <a type='button' name='remove' data-row='row" + count + "' class='remove form-control btn btn-success btn-icon active me-3 '  ><i class='fa fa-minus'></i></a><br> <a type='button' name='admid' data-row='row" + count + "'class='admid form-control btn btn-success btn-icon active'  style='color: white; '><i class='fa fa-plus'></i></a></div>  </td>";
                         html_code += "</tr>";
-                        html_code += "</div>";
+                        // html_code += "</div>";
                         $('#tbody2').append(html_code);
 
                     }
@@ -224,8 +224,8 @@ function fill_unit_select_box($connect)
             });
 
                $(document).on('click', '.admid', function() {
-                var delete_row = $(this).data("row");
-                alert(delete_row);
+                var newrow = $(this).data("row");
+                alert(newrow);
                 var x = 0;
                 var read = "";
                 $.ajax({
@@ -236,7 +236,7 @@ function fill_unit_select_box($connect)
                     },
                     success: function(data) {
                         count = count + 1;
-                        var html_code = "<tr id='row" + count + "'>";
+                        var html_code = "<tr style='background:red' id='row" + count + "'>";
                         html_code += data;
                         html_code += `<td>
                         <select name="attendance[]" class="attendance form-select">
@@ -246,9 +246,10 @@ function fill_unit_select_box($connect)
 
                          </select>
                          </td>`;
-                        html_code += "<td><div class='d-inline-flex '> <a type='button' name='remove' data-row='row" + count + "' class='remove form-control btn btn-success btn-icon active me-3 '  ><i class='fa fa-minus'></i></a><br> <a data-row='row" + count + "'class='remove form-control btn btn-success btn-icon active'  style='color: white; '><i class='fa fa-plus'></i></a></div>  </td>";
+                        html_code += "<td><div class='d-inline-flex '> <a type='button' name='remove' data-row='row" + count + "' class='remove form-control btn btn-success btn-icon active me-3 '  ><i class='fa fa-minus'></i></a><br> <a data-row='row" + count + "'class='admid form-control btn btn-success btn-icon active'  style='color: white; '><i class='fa fa-plus'></i></a></div>  </td>";
                         html_code += "</tr>";
-                        $('#mytablle').append(html_code);
+                        $('#' + newrow).after(html_code);
+                        // $('#mytablle').append(html_code);
 
                     }
                 });
