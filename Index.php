@@ -117,14 +117,11 @@ function fill_unit_select_box($connect)
                     </tbody>
                 </table>
 
-                <a type="button" name="save" id="save" class="btn btn-info"> Save</a>
                 <div align="center">
                     <input type="submit" name="submit" class="btn btn-info" value="Insert" />
                 </div>
             </form>
-
-
-        </div>
+  </div>
 
 
     </div>
